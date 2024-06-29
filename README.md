@@ -74,11 +74,13 @@ This implementation uses code from following repositories:
 - [Official Glow-TTS Implementation](https://github.com/jaywalnut310/glow-tts)
 - [Triton-Lang](https://github.com/triton-lang/triton)
 
-Feel free to create an issue if you encounter any problems or have any questions.
 
 # Authors
-Junhyeok Lee ([jlee843@jhu.edu]((mailto:jlee843@jhu.edu)))
-Hyoungju Kim([hyeongju@supertone.ai](mailto:hyeongju@supertone.ai))
+- Junhyeok Lee ([jlee843@jhu.edu](mailto:jlee843@jhu.edu))
+- Hyoungju Kim([hyeongju@supertone.ai](mailto:hyeongju@supertone.ai))
+
+
+Feel free to create an issue if you encounter any problems or have any questions.
 
 Additionally, [Supertone](https://supertone.ai) is hiring TTS researchers. 
 If you are interested, please check out our career opportunities!

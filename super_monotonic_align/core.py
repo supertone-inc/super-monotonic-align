@@ -32,6 +32,7 @@ def maximum_path(
 
     for j in range(y_length-1,-1,-1):
         tl.store(path + (index)*path_stride_x + (j)*path_stride_y, 1)
+        # don't know, why but v_left<=v_leftdown (not <) has identical output with original Cython implementation.
         if (index > 0):
             if (index>1):
                 v_left = tl.load(value+ (index+1) * value_stride_x+ j*value_stride_y) # remember that value is padded
@@ -41,7 +42,6 @@ def maximum_path(
 
             #elif  #((index== j-skipped) or 
             elif (tl.load(value+ (index+1) * value_stride_x+ j*value_stride_y)<=tl.load(value+(index) * value_stride_x + j*value_stride_y)):
-            # don't know, why but <= (not <) has identical output with original Cython implementation.
                 index += - 1
             
             
