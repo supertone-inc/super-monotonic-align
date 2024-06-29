@@ -6,11 +6,7 @@ MAS is an effective algorithm for estimating the alignment between paired speech
 
 The authors of Glow-TTS noted:
 ```
-The time complexity of the algorithm is O(T_{text} × T_{mel}). Even though the algorithm is difficult to
-parallelize, it runs efficiently on CPU without the need for GPU executions. In our experiments, it
-spends less than 20 ms on each iteration, which amounts to less than 2% of the total training time.
-Furthermore, we do not need MAS during inference, as the duration predictor is used to estimate the
-alignment.
+The time complexity of the algorithm is O(T_{text} × T_{mel}). Even though the algorithm is difficult to parallelize, it runs efficiently on CPU without the need for GPU executions. In our experiments, it spends less than 20 ms on each iteration, which amounts to less than 2% of the total training time. Furthermore, we do not need MAS during inference, as the duration predictor is used to estimate the alignment.
 ```
 
 However, we found two things.
@@ -28,11 +24,11 @@ Please ensure you have these packages installed to run the code in this reposito
 # How to use
 1. Install super-monotonic-align
 ```
-cd ../super_monotonic_align; pip install -e ./
+cd super_monotonic_align; pip install -e ./
 ```
 or
 ```
-pip install git+https://github.com/supertone/super-monotonic-align.git
+pip install git+https://github.com/supertone-inc/super-monotonic-align.git
 ```
 2. Import `super_monotonic_align` and use it!
 ```python
@@ -82,6 +78,9 @@ This implementation uses code from following repositories:
 
 Feel free to create an issue if you encounter any problems or have any questions.
 
+# Authors
+Junhyeok Lee ([jlee843@jhu.edu]((mailto:jlee843@jhu.edu)))
+Hyoungju Kim([hyeongju@supertone.ai](mailto:hyeongju@supertone.ai))
+
 Additionally, [Supertone](https://supertone.ai) is hiring TTS researchers. 
 If you are interested, please check out our career opportunities!
-
