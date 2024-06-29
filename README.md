@@ -11,11 +11,12 @@ However, we found two things.
 1. MAS can be parallelized in the text-length dimension.
 2. CPU execution consumes an inordinate amount of time for large inputs due to the need to copy large tensors between CPU and GPU.
 
-Therefore, we implemented a Triton kernel to accelerate MAS without inter-device copy.
+Therefore, we implemented a Triton kernel to accelerate MAS on GPU without inter-device copy.
 
 # Requirments
 1. PyTorch (tested with version `torch==2.3.0+cu121`)
 2. Triton-Lang (tested with version `triton==2.3.0`)
+3. Cython (optional for bench, tested with version `Cython== 0.29.36`)
 
 Please ensure you have these packages installed to run the code in this repository, as version checks are not enforced.
 
