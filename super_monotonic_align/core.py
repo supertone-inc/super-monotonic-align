@@ -21,8 +21,8 @@ def maximum_path(
     value += batch * value_stride_b
     offs_prev = tl.arange(0, BLOCK_SIZE_X)
     for j in range(2, y_length+1, 1):
-        x_start = 0 #tl.maximum(0, x_length + j - y_length-1) # for backup
-        x_end = x_length #tl.minimum(x_length, j) # for backup
+        x_start = 0 
+        x_end = x_length
         v_cur= tl.load(value + (offs_prev+1)* value_stride_x + (j-1)*value_stride_y, mask=(offs_prev < x_end) & (offs_prev >= x_start), other=-1e9)
         v_prev =tl.load(value + offs_prev* value_stride_x + (j-1)*value_stride_y, mask=(offs_prev < x_end) & (offs_prev >= x_start), other=-1e9)
         # compare v_cur and v_prev, and update v with larger value
@@ -32,18 +32,12 @@ def maximum_path(
 
     for j in range(y_length-1,-1,-1):
         tl.store(path + (index)*path_stride_x + (j)*path_stride_y, 1)
-        # don't know, why but v_left<=v_leftdown (not <) has identical output with original Cython implementation.
-        if (index > 0):
-            if (index>1):
-                v_left = tl.load(value+ (index+1) * value_stride_x+ j*value_stride_y) # remember that value is padded
-                v_leftdown =  tl.load(value+(index) * value_stride_x + j*value_stride_y) 
-                if (v_left <= v_leftdown):
-                    index += - 1
-
-            #elif  #((index== j-skipped) or 
-            elif (tl.load(value+ (index+1) * value_stride_x+ j*value_stride_y)<=tl.load(value+(index) * value_stride_x + j*value_stride_y)):
+        if (index > 0): # (index == j) is not checked due to max_neg_val padding
+            # remember that value is padded
+            v_left = tl.load(value+ (index+1) * value_stride_x+ j*value_stride_y)#.to(tl.float32)
+            v_leftdown =  tl.load(value+(index) * value_stride_x + j*value_stride_y)#.to(tl.float32)
+            if (v_left < v_leftdown):
                 index += - 1
-            
             
                         
 @torch.no_grad()

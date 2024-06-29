@@ -25,7 +25,7 @@ def identical_test(B,T,S):
     path_c = maximum_path_cython(value, attn_mask)
     path_tri = maximum_path(value, attn_mask)
     # not 100% equal due to precision issue
-    assert torch.allclose(path_c, path_tri, atol=1e-2, rtol=0)
+    assert torch.allclose(path_c, path_tri, atol=1e-2, rtol=0), f"Failed on shape=({B,T,S})"
 
 # benchmark
 @triton.testing.perf_report(
@@ -64,6 +64,6 @@ def bench_mas(B, T, provider, device='cuda'):
     return (ms), (max_ms), (min_ms)
 
 if __name__ == "__main__":
-    for (b,t,s) in [(32, 127, 511), (32, 255, 1023), (32, 511, 2047)]:
+    for (b,t,s) in [(32, 15, 15), (32, 127, 511), (32, 255, 1023), (32, 511, 2047)]:
         identical_test(b,t,s)
     bench_mas.run(save_path='.', print_data=True)
