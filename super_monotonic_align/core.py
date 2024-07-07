@@ -46,7 +46,7 @@ def maximum_path_triton(path, value, t_x, t_y, max_neg_val=-1e9):
     value = torch.nn.functional.pad(value, (1, 0, 1, 0, 0, 0), value=max_neg_val) #[B, T+1, S+1]
     value[:, 2:, 1] = max_neg_val
     value[:, 0, 0] = 0
-    BLOCK_SIZE_X = triton.next_power_of_2(T+1)
+    BLOCK_SIZE_X = max(triton.next_power_of_2(T+1), 16)
     num_warps = 1 # Need to be 1 to prevent wrong output by slicing the operation
     with torch.cuda.device(value.device.index):
         maximum_path[(B, )](
