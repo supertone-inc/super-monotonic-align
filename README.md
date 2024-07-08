@@ -33,35 +33,40 @@ pip install git+https://github.com/supertone-inc/super-monotonic-align.git
 ```python
 from super_monotonic_align import maximum_path
 ...
+# You need to know value's value is modified by triton kernel.
+# If you want to keep value without changing, you need to clone it before maximum_path.
 value = torch.randn((B, T, S), dtype=torch.float32, device='cuda')
 attn_mask = torch.ones((B, T, S), dtype=torch.int32, device='cuda')
-# path: [B,T,S], you can specify dtype of path
-path = maximum_path(value, attn_mask, dtype=dtype)
+# path: [B,T,S]
+path = maximum_path(value, attn_mask)
 ```
 
 # Benchmark
 ```
 MAS in ms:
          T      Triton       Cython
-0    128.0    0.413696     8.216721
-1    256.0    1.649664    37.776081
-2    384.0    3.086336    93.494621
-3    512.0    4.545536   218.105865
-4    640.0    6.973440   311.186676
-5    768.0    9.482240   473.866119
-6    896.0   12.257792   617.156738
-7   1024.0   27.352560   909.698120
-8   1152.0   34.011139  1013.993713
-9   1280.0   40.676353  1279.761597
-10  1408.0   47.934464  1516.422241
-11  1536.0   58.279938  1960.699097
-12  1664.0   68.456451  2163.526855
-13  1792.0   80.745468  2560.196045
-14  1920.0   94.303230  2795.177002
-15  2048.0  272.310272  5583.550781
+0    128.0    0.498688     8.835520
+1    256.0    1.615872    42.645790
+2    384.0    3.428352   138.791458
+3    512.0    5.874688   305.674438
+4    640.0    9.065472   448.026978
+5    768.0   12.222464   499.826355
+6    896.0   15.326208   613.331116
+7   1024.0   19.742207  1348.791382
+8   1152.0   33.110016  1425.197388
+9   1280.0   39.672832  1879.560547
+10  1408.0   47.270401  2160.256836
+11  1536.0   59.043327  2851.383789
+12  1664.0   72.378372  2873.137939
+13  1792.0   82.171906  3634.574219
+14  1920.0   98.664452  3959.088379
+15  2048.0  107.194878  7263.244629
 ```
-![](./assets/MAS.png)
 
+The Triton MAS implementation is at least 17 times faster and up to 67 times faster than the Cython implementation.
+| ms in linear scale | ms in log scale |
+|----------|----------|
+| ![Image 1](./assets/MAS.png) | ![Image 2](./assets/MAS_log.png) |
 
 ## How to run benchmark
 ```bash
