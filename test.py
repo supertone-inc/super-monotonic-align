@@ -7,7 +7,7 @@ from jit_monotonic_align import maximum_path2 as maximum_path_jit_v2
 
 
 def identical_test(B,T,S):
-    value = torch.randn((B, T, S), dtype=torch.float32, device='cuda')
+    value = torch.randn((B, T, S), dtype=torch.float32, device='cuda') * 0.01
     attn_mask = torch.ones((B, T, S), dtype=torch.int32, device='cuda')
     path_c = maximum_path_cython(value, attn_mask)
     path_jit1 = maximum_path_jit_v1(value, attn_mask)
@@ -68,7 +68,7 @@ def bench_mas(B, T, provider, device='cuda'):
     return (ms), (max_ms), (min_ms)
 
 if __name__ == "__main__":
-    for (b,t,s) in [(32, 16, 16), (32, 128, 512), (32, 256, 1024)]:
+    for (b,t,s) in [(32, 16, 16), (32, 128, 512), (32, 256, 1024), (32, 511, 2048)]:
         identical_test(b,t,s)
         print(f"Passed on shape=({b},{t},{s})")
     bench_mas.run(save_path='.', print_data=True)
