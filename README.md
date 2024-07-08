@@ -70,7 +70,7 @@ The Triton MAS implementation is at least 17 times faster and up to 67 times fas
 
 ## How to run benchmark
 ```bash
-cd cython_monotonic_align; python setup.py build_ext --inplace
+cd cython_monotonic_align; mkdir cython_monotonic_align; python setup.py build_ext --inplace
 cd ../super_monotonic_align; pip install -e ./
 python __init__.py
 ```
