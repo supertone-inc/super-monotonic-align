@@ -8,6 +8,8 @@ def maximum_path(value, mask, dtype=torch.float32):
     mask: [b, t_x, t_y]
     skip_mask: [b, t_x]
     """
+    # check value is contiguous
+    value = value.contiguous()
     # Use masked_fill_ to avoid new tensor creation
     value = value.masked_fill_(mask.logical_not(), 0)
     path = torch.zeros_like(value, dtype=dtype)

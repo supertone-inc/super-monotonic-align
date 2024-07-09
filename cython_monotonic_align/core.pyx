@@ -38,7 +38,7 @@ cdef void maximum_path_each(int[:,::1] path, float[:,::1] value, int t_x, int t_
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef void maximum_path_c(int[:,:,::1] paths, float[:,:,::1] values, int[::1] t_xs, int[::1] t_ys, float max_neg_val=-1e9) nogil:
+cpdef void maximum_path_c(int[:,:,::1] paths, float[:,:,::1] values, int[::1] t_xs, int[::1] t_ys, float max_neg_val=-1e32) nogil:
   cdef int b = values.shape[0]
 
   cdef int i

@@ -17,7 +17,7 @@ def maximum_path(
     y_length = tl.load(t_y + batch)
     offs_prev = tl.arange(0, BLOCK_SIZE_X)
     init = tl.where(offs_prev ==0, tl.load(value), max_neg_val)
-    # for j in range(0,1,1):  # set the first column to -1e9 without init point
+    # for j in range(0,1,1):  # set the first column to max_neg_val without init point
     tl.store(value + offs_prev * S, init, mask=offs_prev < x_length)
     for j in range(1, y_length, 1):
         v_cur= tl.load(value + (offs_prev) * S + (j-1), mask=(offs_prev < x_length), other=max_neg_val)
@@ -37,7 +37,7 @@ def maximum_path(
             
                         
 @torch.no_grad()
-def maximum_path_triton(path, value, t_x, t_y, max_neg_val=-1e9):
+def maximum_path_triton(path, value, t_x, t_y, max_neg_val=-1e32):
     B,T,S = path.shape
     BLOCK_SIZE_X = max(triton.next_power_of_2(T), 16)
     num_warps = 1 # Need to be 1 to prevent wrong output by slicing the operation

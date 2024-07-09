@@ -7,12 +7,12 @@ from jit_monotonic_align import maximum_path2 as maximum_path_jit_v2
 
 
 def identical_test(B,T,S):
-    value = torch.randn((B, T, S), dtype=torch.float32, device='cuda') * 0.01
+    value = torch.randn((B, T, S), dtype=torch.float32, device='cuda')
     attn_mask = torch.ones((B, T, S), dtype=torch.int32, device='cuda')
     path_c = maximum_path_cython(value, attn_mask)
     path_jit1 = maximum_path_jit_v1(value, attn_mask)
     path_jit2 = maximum_path_jit_v2(value, attn_mask)
-    path_tri = maximum_path_trion(value, attn_mask)
+    path_tri = maximum_path_trion(value.clone(), attn_mask)
 
     # not 100% equal due to precision issue
     assert torch.allclose(path_c, path_tri, atol=1e-2, rtol=0), f"Failed on shape=({B,T,S})\n{path_c}\n{path_tri}\ndiff:{(path_c-path_tri).abs().sum()}"
@@ -25,8 +25,8 @@ def identical_test(B,T,S):
         x_names=['T'],
         x_vals=[128 * i for i in range(1, 17)],
         line_arg='provider',
-        line_vals=['triton', 'cython', 'jit_v1', 'jit_v2'],
-        line_names=['Triton', 'Cython', 'JIT_v1', 'JIT_v2'],
+        line_vals= ['triton', 'jit_v1', 'jit_v2', 'cython'],
+        line_names=['Triton', 'JIT_v1', 'JIT_v2', 'Cython'],
         styles=[('blue', '-'), ('green', '-'), ('red', '-'), ('orange', '-')],
         ylabel='ms',
         plot_name='MAS in ms',

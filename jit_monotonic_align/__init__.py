@@ -9,7 +9,7 @@ def maximum_path1(logp: torch.Tensor, attn_mask: torch.Tensor):
     device = logp.device
     logp = logp * attn_mask  # [B, Tx, Ty]
     path = torch.zeros_like(logp)  # [B, Tx, Ty]
-    max_neg_val = torch.tensor(-1e9, dtype=logp.dtype, device=device)
+    max_neg_val = torch.tensor(-1e32, dtype=logp.dtype, device=device)
 
     x_len = attn_mask[:, :, 0].sum(dim=1).long()  # [B]
     y_len = attn_mask[:, 0, :].sum(dim=1).long()  # [B]
@@ -54,7 +54,7 @@ def maximum_path2(logp: torch.Tensor, attn_mask: torch.Tensor):
         device = logp.device
         logp = logp * attn_mask  # [B, Tx, Ty]
         path = torch.zeros_like(logp)  # [B, Tx, Ty]
-        max_neg_val = torch.tensor(-1e9, dtype=logp.dtype, device=device)
+        max_neg_val = torch.tensor(-1e32, dtype=logp.dtype, device=device)
 
         x_len = attn_mask[:, :, 0].sum(dim=1).long()  # [B]
         y_len = attn_mask[:, 0, :].sum(dim=1).long()  # [B]
