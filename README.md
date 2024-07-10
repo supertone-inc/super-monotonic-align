@@ -24,7 +24,8 @@ Please ensure you have these packages installed to run the code in this reposito
 # How to use
 1. Install super-monotonic-align
 ```
-cd super_monotonic_align; pip install -e ./
+git clone git@github.com:supertone-inc/super-monotonic-align.git
+cd super-monotonic-align; pip install -e ./
 ```
 or
 ```
