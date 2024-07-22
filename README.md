@@ -10,7 +10,7 @@ The authors of Glow-TTS noted:
 > "The time complexity of the algorithm is O(T_{text} × T_{mel}). Even though the algorithm is difficult to parallelize, it runs efficiently on CPU without the need for GPU executions. In our experiments, it spends less than 20 ms on each iteration, which amounts to less than 2% of the total training time. Furthermore, we do not need MAS during inference, as the duration predictor is used to estimate the alignment."
 
 However, we found three issues while using MAS.
-1. MAS can be parallelized in the text-length dimension.
+1. MAS can be parallelized in the text-length dimension, while the original implementation uses nested loops.
 2. CPU execution consumes an inordinate amount of time for large inputs due to the need to copy large tensors between CPU and GPU.
 3. The hard-coded value of max_neg_val at -1e9 is insufficient to prevent alignment mismatches in the upper diagonal parts.
 
