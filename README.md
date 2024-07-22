@@ -3,6 +3,8 @@
 This repo contains [Triton-Lang](https://github.com/triton-lang/triton) and PyTorch implementation of the monotonic alignment search (MAS), originally from [Glow-TTS](https://arxiv.org/abs/2005.11129).
 MAS is an effective algorithm for estimating the alignment between paired speech and text in a self-supervised manner.
 
+![Image0](./assets/memory_read_write.png)
+
 
 The authors of Glow-TTS noted:
 > "The time complexity of the algorithm is O(T_{text} × T_{mel}). Even though the algorithm is difficult to parallelize, it runs efficiently on CPU without the need for GPU executions. In our experiments, it spends less than 20 ms on each iteration, which amounts to less than 2% of the total training time. Furthermore, we do not need MAS during inference, as the duration predictor is used to estimate the alignment."
@@ -66,7 +68,7 @@ MAS in ms:
 15  2048.0  107.218948  1261.682739  2889.841797  7792.640137
 ```
 
-The Triton MAS implementation is at least 17 times faster and up to 67 times faster than the Cython implementation. PyTorch JIT implementations are faster than the Cython implementation for large-sized tensors, especially version v1, which does not involve inter-device copying.
+The Triton MAS implementation is at least 19 times faster and up to 72 times faster than the Cython implementation. PyTorch JIT implementations are faster than the Cython implementation for large-sized tensors, especially version v1, which does not involve inter-device copying.
 
 | ms in linear scale | ms in log scale |
 |----------|----------|
