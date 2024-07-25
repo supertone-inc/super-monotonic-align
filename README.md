@@ -85,6 +85,7 @@ cd ../; python test.py
 This implementation uses code from following repositories:
 - [jaywalnut310's Official Glow-TTS Implementation](https://github.com/jaywalnut310/glow-tts)
 - [OpenAI's Triton-Lang Tutorials](https://github.com/triton-lang/triton)
+- [Tri Dao's FlashAttention (memory hierarchy)](https://github.com/Dao-AILab/flash-attention)
 
 
 # Authors
