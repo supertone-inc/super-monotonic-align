@@ -87,9 +87,13 @@ This implementation uses code from following repositories:
 - [OpenAI's Triton-Lang Tutorials](https://github.com/triton-lang/triton)
 - [Tri Dao's FlashAttention (memory hierarchy)](https://github.com/Dao-AILab/flash-attention)
 
+# Acknowledgement
+This work is supported by Supertone Inc. and HYBE Corp. 
+We thank Jinhyeok Yang, Juheon Lee, Yechan Yu, Seunghoon Ji, Jacob Morton, Seungu Han, Sungho Lee, Joon Byun, and Hoon Heo of Supertone research team and Hyeong-Seok Choi of ElevenLabs.
+
 
 # Authors
-- Junhyeok Lee ([jlee843@jhu.edu](mailto:jlee843@jhu.edu), [jun.hyeok@supertone.ai](mailto:jun.hyeok@supertone.ai))
+- Junhyeok Lee ([jlee843@jhu.edu](mailto:jlee843@jhu.edu)
 - Hyoungju Kim ([hyeongju@supertone.ai](mailto:hyeongju@supertone.ai))
 
 
