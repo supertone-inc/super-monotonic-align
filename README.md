@@ -93,7 +93,7 @@ We thank Jinhyeok Yang, Juheon Lee, Yechan Yu, Seunghoon Ji, Jacob Morton, Seung
 
 
 # Authors
-- Junhyeok Lee ([jlee843@jhu.edu](mailto:jlee843@jhu.edu)
+- Junhyeok Lee ([jlee843@jhu.edu](mailto:jlee843@jhu.edu))
 - Hyoungju Kim ([hyeongju@supertone.ai](mailto:hyeongju@supertone.ai))
 
 
