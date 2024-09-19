@@ -1,6 +1,6 @@
 # Super-Monotonic-Alignment-Search
 
-[[`Technical Report`](https://arxiv.org/abs/2409.07704)]
+[![Technical Report at arXiv](https://img.shields.io/badge/Technical Report-2409.07704-brightgreen.svg?style=flat-square)](https://arxiv.org/abs/2409.07704) 
 
 This repo contains [Triton-Lang](https://github.com/triton-lang/triton) and PyTorch implementation of the monotonic alignment search (MAS), originally from [Glow-TTS](https://arxiv.org/abs/2005.11129).
 MAS is an effective algorithm for estimating the alignment between paired speech and text in a self-supervised manner.
@@ -47,6 +47,14 @@ attn_mask = torch.ones((B, T, S), dtype=torch.int32, device='cuda')
 # path: [B,T,S] tensor, you can specify path's dtype, default=torch.float32
 path = maximum_path(value, attn_mask, dtype=torch.bool)
 ```
+
+## Warning
+
+Please **check your input shape** before use.
+
+Thanks to [codeghees](https://github.com/codeghees) for the issue, our implementation uses the shape \[B, T, S\], identical to Glow-TTS version, while the VITS implementation uses the shape \[B, S, T\]. 
+
+For now, we recommend to transpose it if you using \[B, S, T\] shaped input, but we will soon release an option that supprots \[B, S, T\] as well.
 
 # Benchmark
 ```
@@ -98,6 +106,15 @@ We thank Jinhyeok Yang, Juheon Lee, Yechan Yu, Seunghoon Ji, Jacob Morton, Seung
 - Junhyeok Lee ([jlee843@jhu.edu](mailto:jlee843@jhu.edu))
 - Hyoungju Kim ([hyeongju@supertone.ai](mailto:hyeongju@supertone.ai))
 
+If this repository useful for your research, please consider citing (with Glow-TTS or VITS)!
+```bib
+@article{supermas,
+  title={{Super Monotonic Alignment Search}},
+  author={Lee, Junhyeok and Kim, Hyeongju},
+  journal={arXiv preprint arXiv:2409.07704},
+  year={2024}
+}
+```
 
 Feel free to create an issue if you encounter any problems or have any questions.
 
