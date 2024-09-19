@@ -1,6 +1,6 @@
 # Super-Monotonic-Alignment-Search
 
-[![Technical Report at arXiv](https://img.shields.io/badge/Technical Report-2409.07704-brightgreen.svg?style=flat-square)](https://arxiv.org/abs/2409.07704) 
+[![TechnicalReport](https://img.shields.io/badge/TechnicalReport-2409.07704-brightgreen.svg?style=flat-square)](https://arxiv.org/abs/2409.07704) 
 
 This repo contains [Triton-Lang](https://github.com/triton-lang/triton) and PyTorch implementation of the monotonic alignment search (MAS), originally from [Glow-TTS](https://arxiv.org/abs/2005.11129).
 MAS is an effective algorithm for estimating the alignment between paired speech and text in a self-supervised manner.
