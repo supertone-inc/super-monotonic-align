@@ -1,3 +1,7 @@
+> **This repository is archived. Development and support have ended.**
+>
+> The code remains available for reference under the terms of the [LICENSE](./LICENSE). No updates, bug fixes, security patches, or support will be provided, and issues and pull requests are no longer monitored. The software is provided "AS IS" as set forth in the license, without any warranty or ongoing responsibility of the original authors.
+
 # Super-Monotonic-Alignment-Search
 
 [![TechnicalReport](https://img.shields.io/badge/TechnicalReport-2409.07704-brightgreen.svg?style=flat-square)](https://arxiv.org/abs/2409.07704) 
